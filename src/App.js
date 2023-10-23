@@ -1,8 +1,8 @@
 import React from 'react'
-import { Routes,Route,Link } from 'react-router-dom'
-import { Layout ,Typography, Space } from 'antd'
+import { Routes, Route, Link } from 'react-router-dom'
+import { Layout, Typography, Space } from 'antd'
 import './App.css'
-import { Navbar ,Exchanges,Homepage ,Cryptocurrencies ,CryptoDetails ,News } from './components'
+import { Navbar, Exchanges, Homepage, Cryptocurrencies, CryptoDetails, News } from './components'
 
 
 
@@ -11,7 +11,7 @@ function App() {
 
     <div className="app">
       <div className="navbar">
-      <Navbar/>
+        <Navbar />
       </div>
 
       <div className="main">
@@ -19,43 +19,43 @@ function App() {
         <Layout>
 
           <div className="routes">
-          <Routes>
-            <Route exact path="/" element={  <Homepage />}>
-            
-            </Route>
-            <Route exact path="/exchanges" element={<Exchanges />}>
-              
-            </Route>
-            <Route exact path="/cryptocurrencies" element={ <Cryptocurrencies />}>
-            </Route>
-            <Route exact path="/crypto/:coinId" element={ <CryptoDetails />}>
-             
-            </Route>
-            <Route exact path="/news" element={<News />}>
-              
-            </Route>
-          </Routes>
+            <Routes>
+              <Route exact path="/" element={<Homepage />}>
+
+              </Route>
+              <Route exact path="/exchanges" element={<Exchanges />}>
+
+              </Route>
+              <Route exact path="/cryptocurrencies" element={<Cryptocurrencies />}>
+              </Route>
+              <Route exact path="/crypto/:coinId" element={<CryptoDetails />}>
+
+              </Route>
+              <Route exact path="/news" element={<News />}>
+
+              </Route>
+            </Routes>
           </div>
 
         </Layout>
 
-      
 
-      <div className="footer"> 
-          <Typography.Title level={5} style={{color:'white' ,textAlign:'center'}}>
-            Cryptoverse <br />
+
+        <div className="footer">
+          <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>
+            CryptoHorizon <br />
             All right reserved
           </Typography.Title>
           <Space>
-          <Link to="/">Home</Link>
-          <Link to="/exchanges">Exchanges</Link>
-          <Link to="/news">News</Link>
+            <Link to="/">Home</Link>
+            <Link to="/exchanges">Exchanges</Link>
+            <Link to="/news">News</Link>
           </Space>
-      </div>
+        </div>
       </div>
     </div>
 
-    )
+  )
 }
 
 export default App

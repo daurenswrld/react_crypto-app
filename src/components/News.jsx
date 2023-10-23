@@ -1,7 +1,7 @@
-import React, {useState,useEffect } from 'react'
+import React, { useState } from 'react'
 import { Select, Typography, Row, Col, Avatar, Card } from 'antd';
 import moment from 'moment';
-import {useGetCryptoNewsQuery } from '../services/cryptoNewsApi'
+import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi'
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import Loader from './Loader';
 
@@ -13,26 +13,26 @@ const demoImageUrl = 'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid
 
 function News({ simplified }) {
   const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
-  const { data: cryptoNews } = useGetCryptoNewsQuery  ({ newsCategory, count: simplified ? 6 : 12 });
+  const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 6 : 12 });
   const { data } = useGetCryptosQuery(100);
 
   console.log(cryptoNews);
-  
-  if(!cryptoNews?.value) return <Loader/>;
-  return (
-    <Row gutter={[24,24]}>
 
-      {!simplified &&(
+  if (!cryptoNews?.value) return <Loader />;
+  return (
+    <Row gutter={[24, 24]}>
+
+      {!simplified && (
         <Col span={24}>
-          <Select 
-          showSearch 
-          className='select-news'
-          placeholder="Select a Crypto"
-          optionFilterProp='children'
-          onChange={(value)=> setNewsCategory(value)}
-          filterOption={(input,option) => option.children.toLowerCase().indexOf(input.toLocaleLowerCase()) >= 0  }
+          <Select
+            showSearch
+            className='select-news'
+            placeholder="Select a Crypto"
+            optionFilterProp='children'
+            onChange={(value) => setNewsCategory(value)}
+            filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLocaleLowerCase()) >= 0}
           >
-            <Option value ='Cryptocurrency'> Cryptocurrency</Option>
+            <Option value='Cryptocurrency'> Cryptocurrency</Option>
             {data?.data?.coins.map((coin) => <Option value={coin.name}> {coin.name} </Option>)}
           </Select>
         </Col>
@@ -47,21 +47,21 @@ function News({ simplified }) {
               <div className="news-image-container">
 
                 <Title className='news-title' level={4} >{news.name}</Title>
-                <img style={{maxWidth:'200px',maxHeight:'200px',width:'200px' ,height:'100%'}} src={news?.image?.thumbnail?.contentUrl  || demoImageUrl } alt='News' />
+                <img style={{ maxWidth: '200px', maxHeight: '200px', width: '200px', height: '100%' }} src={news?.image?.thumbnail?.contentUrl || demoImageUrl} alt='News' />
               </div>
 
-              <p> 
-                {news.description > 100 ?  `${news.description.substring(0,100)} ...`
-                : news.description
-              }
-                </p>
+              <p>
+                {news.description > 100 ? `${news.description.substring(0, 100)} ...`
+                  : news.description
+                }
+              </p>
 
               <div className="provider-container">
                 <div>
-                  <Avatar src={news.provider[0]?.image?.thumbnail?.contentUrl || demoImageUrl } alt='news' />
+                  <Avatar src={news.provider[0]?.image?.thumbnail?.contentUrl || demoImageUrl} alt='news' />
                   <Text className='provider-name'> {news.provider[0]?.name}</Text>
                 </div>
-                 <Text > {moment(news.datePublished).startOf('ss').fromNow() }</Text>
+                <Text > {moment(news.datePublished).startOf('ss').fromNow()}</Text>
 
               </div>
             </a>
@@ -73,7 +73,7 @@ function News({ simplified }) {
 
     </Row>
 
-    )
+  )
 }
 
 export default News
